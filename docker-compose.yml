@@ -1,0 +1,11 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.13
+    container_name: rabbitmq
+    ports:
+      - "5672:5672" # esta é a porta que a aplicação vai se comunicar com o RabbitMQ
+      - "15672:15672" # esta é a porta que podemos acessar a dashboard do RabbitMQ em localhost
+    volumes: # adicionamos os volumes abaixo para que os dados do RabbitMQ sejam persistidos toda vez que seja reiniciado o container
+      - ./.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker-conf/rabbitmq/log/:/var/log/rabbitmq
